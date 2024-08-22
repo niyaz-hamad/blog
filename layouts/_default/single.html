@@ -1,0 +1,18 @@
+{{ define "main" }}
+<article>
+  <header>
+    <h1>{{ .Name }}</h1>
+  </header>
+  {{ .Content }}
+  <hr />
+  <footer>
+    <span class="tags">
+      Tags: 
+      {{ range (.GetTerms "tags") }}
+        <a class="tags__tag" href={{ .Permalink }}>{{ .Name }}</a>
+      {{ end }}
+    </span>
+    <time>{{ .Date.Format "Jan 02, 2006" }}</time>
+  </footer>
+</article>
+{{ end }}

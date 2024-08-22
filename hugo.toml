@@ -1,0 +1,10 @@
+baseURL = 'https://niyaz-hamad.github.io/blog/'
+languageCode = 'en-us'
+title = 'Blog'
+
+[taxonomies]
+  tag = 'tags'
+
+[markup]
+  [markup.highlight]
+    noClasses = false

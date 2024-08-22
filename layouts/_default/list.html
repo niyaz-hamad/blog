@@ -1,0 +1,33 @@
+{{ define "main" }}
+{{ if eq .Type "posts" }}
+  {{ partial "404" . }}
+{{ else if and (eq .Type "tags") (eq .Kind "taxonomy") }}
+  {{ partial "404" . }}
+{{ else }}
+<h1>
+  {{ if .IsHome }}
+  Notes <br />
+  <span class="sub-heading">Without verbosity or behind a paywall.</span>
+  {{ else }}
+  <span class="tag-heading">#{{ .Title }}</span>
+  {{ end }}
+</h1>
+<ul class="posts">
+  {{ range .Paginator.Pages }}
+  <li class="post">
+    <h3 class="post__title">
+      <a class="post__link" href="{{ .Permalink }}">{{ .Title }}</a>
+    </h3>
+    <div class="post__meta">
+      <time class="post__date">{{ .Date.Format "Jan 02, 2006" }}</time>
+      <span class="tags">
+        {{ range (.GetTerms "tags") }}
+        <a class="tags__tag" href="{{ .Permalink }}">{{ .Name }}</a>
+        {{ end }}
+      </span>
+    </div>
+  </li>
+  {{ end }}
+</ul>
+{{ end }}
+{{ end }}
